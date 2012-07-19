@@ -72,6 +72,19 @@
 	                    error:error];
 }
 
+- (id)initWithContentsOfURL:(NSURL *)url options:(NSUInteger)mask error:(NSError *__autoreleasing *)error
+{
+    NSData *data = [NSData dataWithContentsOfURL:url
+                                         options:NSDataReadingMappedIfSafe
+                                           error:error];
+    if (error)
+        return nil;
+    
+    return [self initWithData:data
+                      options:mask
+                        error:error];
+}
+
 /**
  * Initializes and returns a DDXMLDocument object created from an NSData object.
  * 
